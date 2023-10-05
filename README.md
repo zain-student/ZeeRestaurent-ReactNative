@@ -1,2 +1,2 @@
-# ZeeRestaurent-ReactNative
+# ZeeHotel-ReactNative
 Restaurent App
