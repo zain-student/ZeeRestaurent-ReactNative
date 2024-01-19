@@ -145,15 +145,6 @@ const menuItem = [
   },
 ];
 const MenuItems = () => {
-  // const renderItem = ({ item }) => (
-  //   <TouchableOpacity style={styles.menuItem}>
-  //     <Image source={{ uri: item.dishImage }} style={styles.itemImage} />
-  //     <View style={styles.itemDetails}>
-  //       <Text style={styles.itemName}>{item.dishName}</Text>
-  //       <Text style={styles.itemPrice}>{item.price}</Text>
-  //     </View>
-  //   </TouchableOpacity>
-  // );
   return (
     <View style={styles.container}>
       <Text style={styles.menuTitle}>Our Menu</Text>
@@ -164,9 +155,6 @@ const MenuItems = () => {
         renderItem={({ item }) => (
           <TouchableOpacity style={styles.menuItem}>
             <View style={styles.flatListCon}>
-              {/* <View style={styles.badge}>
-              <Text style={styles.badgeText}>{item.id}</Text>
-            </View> */}
               <Image source={{ uri: item.dishImage }} style={styles.image} />
               <Text style={styles.itemPrice}>{item.price}</Text>
               <Text style={styles.name}>{item.dishName}</Text>
@@ -177,16 +165,6 @@ const MenuItems = () => {
         ItemSeparatorComponent={() => <View style={styles.separator}></View>}
       />
     </View>
-    // <View style={styles.container}>
-    //   <Text style={styles.menuTitle}>Our Menu</Text>
-    //   <FlatList
-    //     data={menuItem}
-    //     keyExtractor={(item) => item.id}
-    //     numColumns={2}
-    //     renderItem={renderItem}
-    //     columnWrapperStyle={styles.columnWrapper}
-    //   />
-    // </View>
   );
 };
 
@@ -211,27 +189,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: "hidden",
   },
-  // itemImage: {
-  //   height: 150,
-  //   borderRadius: 8,
-  // },
-  // itemDetails: {
-  //   padding: 10,
-  // },
-  // itemName: {
-  //   fontSize: 16,
-  //   fontWeight: "bold",
-  //   color: "#333",
-  // },
+
   itemPrice: {
     fontSize: 30,
     fontWeight: "bold",
     color: "white",
     textAlign: "center",
   },
-  // columnWrapper: {
-  //   justifyContent: "space-between",
-  // },
+
   flatListCon: {
     backgroundColor: colors.primary,
     marginVertical: 10,
@@ -240,11 +205,6 @@ const styles = StyleSheet.create({
     borderRadius: 40,
   },
   image: {
-    // flexDirection: "row",
-    // height: 250,
-    // width: "100%",
-    // marginLeft: 10,
-    // marginTop: 10,
     height: 250,
     borderRadius: 8,
   },
@@ -262,13 +222,11 @@ const styles = StyleSheet.create({
     color: "white",
   },
   name: {
-    // fontWeight: "bold",
     fontSize: 30,
     textAlign: "center",
     borderWidth: 2,
     backgroundColor: "grey",
-    // marginLeft: 10,
-    // marginRight: 10,
+
     borderLeftWidth: 0,
     borderRightWidth: 0,
     borderEndEndRadius: 10,

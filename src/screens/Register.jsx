@@ -1,3 +1,6 @@
+//  "@react-native-async-storage/async-storage": "1.18.2",
+//  "undefined": "react-native-firebase/auth",
+// "@react-native-community/viewpager": "5.0.11"
 import {
   View,
   Text,
@@ -6,23 +9,18 @@ import {
   TouchableOpacity,
   ScrollView,
   SafeAreaView,
+  Alert,
 } from "react-native";
-// import MenuItems from "./MenuItems";
 import Home from "./home";
 import React, { useState } from "react";
 import { Feather } from "@expo/vector-icons";
-// import navigation from "@react-navigation/native";
-// import { useNavigation } from "@react-navigation/native";
 import { Icon } from "@rneui/themed";
-// import { colors, fonts } from "../utils/themes";
-// import { Button, useThemeMode } from "@rneui/themed";
 
 export default function Register({ navigation }) {
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [email, setEmail] = useState();
-  const [gender, setGender] = useState();
-  const [password, setPassword] = useState(true);
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("");
+  const [password, setPassword] = useState("");
   const [showPass, setShowPass] = useState(false);
 
   function handlePasswordShow() {
@@ -32,10 +30,38 @@ export default function Register({ navigation }) {
       setShowPass(true);
     }
   }
+  const register = async () => {
+    // function register() {
+    if (!userName || !email || !gender || !password) {
+      Alert.alert("All fields are required");
+      return;
+    }
 
-  function register() {
+    // Store the user information
+    const user = {
+      userName,
+      email,
+      gender,
+      password,
+    };
+    console.log(
+      "User Name:" +
+        userName +
+        " Email: " +
+        email +
+        " Gender: " +
+        gender +
+        " Password: " +
+        password
+    );
+    setUserName("");
+    setEmail("");
+    setGender("");
+    setPassword("");
+
     navigation.navigate("Home");
-  }
+  };
+
   function login() {
     navigation.navigate("Login");
   }
@@ -47,22 +73,16 @@ export default function Register({ navigation }) {
         <View style={[styles.inputConn, { flexDirection: "row" }]}>
           <Icon name="person" size={25} color="grey" />
           <TextInput
-            onChangeText={setFirstName}
-            placeholder="Enter Your FirstName "
-            style={{ width: "90%", fontSize: 16, marginLeft: 6 }}
-          />
-        </View>
-        <View style={[styles.inputConn, { flexDirection: "row" }]}>
-          <Icon name="person" size={25} color="grey" />
-          <TextInput
-            onChangeText={setLastName}
-            placeholder="Enter your LastName"
+            value={userName}
+            onChangeText={setUserName}
+            placeholder="Enter your Name"
             style={{ width: "90%", fontSize: 16, marginLeft: 6 }}
           />
         </View>
         <View style={[styles.inputConn, { flexDirection: "row" }]}>
           <Icon name="email" size={25} color="grey" />
           <TextInput
+            value={email}
             onChangeText={setEmail}
             placeholder="Enter your Email"
             style={{ width: "90%", fontSize: 16, marginLeft: 6 }}
@@ -71,6 +91,7 @@ export default function Register({ navigation }) {
         <View style={[styles.inputConn, { flexDirection: "row" }]}>
           <Icon name="person" size={25} color="grey" />
           <TextInput
+            value={gender}
             onChangeText={setGender}
             placeholder="Enter your Gender"
             style={{ width: "90%", fontSize: 16, marginLeft: 6 }}
@@ -80,6 +101,7 @@ export default function Register({ navigation }) {
           <Icon name="lock" size={25} color="grey" />
           <TextInput
             secureTextEntry={!showPass}
+            value={password}
             onChangeText={setPassword}
             placeholder="Enter Your Password"
             style={{ width: "90%", fontSize: 16, marginLeft: 6 }}
@@ -96,8 +118,11 @@ export default function Register({ navigation }) {
         <TouchableOpacity style={styles.button} onPress={register}>
           <Text style={styles.buttonText}>Register</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={login}>
-          <Text style={styles.buttonText}>Login</Text>
+        <TouchableOpacity onPress={login}>
+          <Text style={styles.touchButton}>
+            Already have an account!
+            <Text style={{ color: "blue", fontSize: 18 }}> goToLogin</Text>
+          </Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -140,5 +165,10 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     fontSize: 20,
+  },
+  touchButton: {
+    marginTop: 20,
+    color: "grey",
+    fontSize: 15,
   },
 });
