@@ -14,7 +14,7 @@ import { Feather } from "@expo/vector-icons";
 // import Home from "./home";
 import { Icon } from "@rneui/themed";
 import firebase from "../screens/config";
-
+import user from "./Register";
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,8 +31,8 @@ const Login = ({ navigation }) => {
       return;
     }
     if (
-      (email === email1 || email === email2) &&
-      (password === password1 || password === password2)
+      (email === email1 && password === password1) ||
+      (email === email2 && password === password2)
     ) {
       navigation.navigate("Home");
     } else {
@@ -40,10 +40,10 @@ const Login = ({ navigation }) => {
     }
     // try {
     //   await firebase.auth().signInWithEmailAndPassword(email, password);
-    //   navigation.navigate("Home");
     // } catch (error) {
     //   alert(error.message);
     // }
+    // navigation.navigate("Home");
     setEmail("");
     setPassword("");
   };

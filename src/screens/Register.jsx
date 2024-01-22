@@ -85,6 +85,8 @@ export default function Register({ navigation }) {
             value={email}
             onChangeText={setEmail}
             placeholder="Enter your Email"
+            autoCapitalize="none"
+            autoCorrect={false}
             style={{ width: "90%", fontSize: 16, marginLeft: 6 }}
           />
         </View>
