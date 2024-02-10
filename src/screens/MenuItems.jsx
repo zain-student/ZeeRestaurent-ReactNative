@@ -144,25 +144,35 @@ const menuItem = [
       "https://images.pexels.com/photos/10134248/pexels-photo-10134248.jpeg",
   },
 ];
+
+const Header = () => <Text style={styles.menuTitle}>Our Menu</Text>;
+const Separator = () => <View style={styles.separator} />;
+const Footer = () => (
+  <Text style={styles.footerStyle}>All Rights reserved by Zee Hotel,2022 </Text>
+);
 const MenuItems = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.menuTitle}>Our Menu</Text>
-      <SafeAreaView />
+      {/* <SafeAreaView /> */}
+
       <FlatList
         data={menuItem}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity style={styles.menuItem}>
-            <View style={styles.flatListCon}>
+          <View style={styles.flatListCon}>
+            <TouchableOpacity
+            // style={styles.menuItem}
+            >
               <Image source={{ uri: item.dishImage }} style={styles.image} />
-              <Text style={styles.itemPrice}>{item.price}</Text>
-              <Text style={styles.name}>{item.dishName}</Text>
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
+            <Text style={styles.itemPrice}>{item.price}</Text>
+            <Text style={styles.name}>{item.dishName}</Text>
+          </View>
         )}
-        numColumns={1}
-        ItemSeparatorComponent={() => <View style={styles.separator}></View>}
+        // numColumns={1}
+        ItemSeparatorComponent={Separator}
+        ListHeaderComponent={Header}
+        ListFooterComponent={Footer}
       />
     </View>
   );
@@ -172,8 +182,9 @@ export default MenuItems;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 16,
+    // flex: 1,
+    // padding: 16,
+    // marginTop: 20,
   },
   menuTitle: {
     fontSize: 34,
@@ -183,7 +194,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   menuItem: {
-    flex: 1,
+    // flex: 1,
     margin: 8,
     backgroundColor: "#fff",
     borderRadius: 8,
@@ -234,5 +245,11 @@ const styles = StyleSheet.create({
   separator: {
     height: 1,
     backgroundColor: "grey",
+  },
+  footerStyle: {
+    fontSize: 18,
+    color: "black",
+    textAlign: "center",
+    padding: 10,
   },
 });
